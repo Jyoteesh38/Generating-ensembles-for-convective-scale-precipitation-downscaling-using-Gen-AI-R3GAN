@@ -29,4 +29,4 @@ This repository implements **R3GAN**, a distributed generative adversarial netwo
 
 ### Discriminator:
 - Convolutional classifier
-- Relativistic comparison of real vs. generated patches
+- Relativistic comparison of real vs. generated patches and dual-sided zero-centered gradient penalties
