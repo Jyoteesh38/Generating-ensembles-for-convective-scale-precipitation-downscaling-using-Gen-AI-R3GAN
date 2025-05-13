@@ -44,9 +44,8 @@ x_static = xr.open_zarr('B_C2_static.zarr')['BC2_static']
 
 b2c = xr.open_zarr('B2C_Pr_data_2k25.zarr')
 
-# Configs
+# Batch size - aim to fill GPU memory to achieve best computational performance
 batch_size = 32
-epochs = 200
 
 Epoch_size = x_tr.shape[0]
 Val_size = x_v.shape[0]
