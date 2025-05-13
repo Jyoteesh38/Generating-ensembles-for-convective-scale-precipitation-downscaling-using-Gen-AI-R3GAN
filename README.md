@@ -31,6 +31,11 @@ This repository implements **R3GAN**, a distributed generative adversarial netwo
 - Convolutional classifier
 - Relativistic comparison of real vs. generated patches and dual-sided zero-centered gradient penalties
 
+- Losses include:
+  - Mean Square Error (MSE)
+  - Relativistic GAN Loss
+  - Zero-centered Gradient Penalties (R1/R2)
+
 ### 📦 Data
 
 This project uses high-volume climate and observation datasets in `.zarr` format:
