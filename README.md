@@ -51,5 +51,6 @@ To train using **80 GPUs**, launch with:
 
 ```bash
 horovodrun -np 80 -H localhost:80 python R3GAN/train_r3gan.py
+```
 Ensure that the system has proper NCCL support, GPU visibility settings, and TF_DISABLE_NVTX_RANGES / TF_CPP_MIN_LOG_LEVEL environment variables configured (as handled in utils.py).
 
