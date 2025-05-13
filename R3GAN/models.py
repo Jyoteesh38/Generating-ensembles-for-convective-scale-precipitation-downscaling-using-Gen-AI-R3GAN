@@ -142,7 +142,7 @@ def build_generator(inp_lat, inp_lon, out_lat, out_lon, chnl, out_vars, fil, dil
     return models.Model(inputs=[inp, y_st, y_noise], outputs=y)
 
 # Discriminator architecture
-def Dis(inp_lat, inp_lon, out_lat, out_lon, chnl, out_vars, n_out, fil, dil_rate, std, alpha_val, reg_val):
+def build_discriminator(inp_lat, inp_lon, out_lat, out_lon, chnl, out_vars, n_out, fil, dil_rate, std, alpha_val, reg_val):
 
     inp = layers.Input(shape=(inp_lat, inp_lon, chnl))
 
