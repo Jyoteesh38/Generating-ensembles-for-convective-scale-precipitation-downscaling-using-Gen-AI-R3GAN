@@ -59,3 +59,19 @@ horovodrun -np 80 -H localhost:80 python R3GAN/train_r3gan.py
 ```
 Ensure that the system has proper NCCL support, GPU visibility settings, and TF_DISABLE_NVTX_RANGES / TF_CPP_MIN_LOG_LEVEL environment variables configured (as handled in utils.py).
 
+## 🔍 Inference
+
+Use the provided notebook [`scripts/inference.ipynb`](scripts/inference.ipynb) to generate **high-resolution precipitation ensemble predictions** using trained R3GAN generator models.
+
+### This notebook demonstrates:
+
+- 🔄 **Loading trained generator models** from saved `.h5` checkpoints
+- 📥 **Preprocessing and loading ERA5 reanalysis inputs** and static variables from `.zarr` format
+- 🎲 **Injecting random Gaussian noise seeds** to simulate ensemble diversity
+- 🎯 **Generating downscaled precipitation fields** at convective resolution
+- 🖼️ **Saving and visualizing output fields** for selected timesteps and ensemble members
+- 📊 **Calculating basic ensemble statistics** across generated members
+
+> ✅ Designed to support batch-wise inference over large datasets and multiple noise seeds for uncertainty quantification.
+
+
