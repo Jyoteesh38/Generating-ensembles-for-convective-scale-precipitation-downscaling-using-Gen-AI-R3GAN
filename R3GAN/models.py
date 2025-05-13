@@ -102,7 +102,7 @@ def pool2d(i, inp, ps):
 
 
 # Generator architecture
-def Gen(inp_lat, inp_lon, out_lat, out_lon, chnl, out_vars, fil, dil_rate, std, swtch, alpha_val, reg_val, num_heads, key_dim):
+def build_generator(inp_lat, inp_lon, out_lat, out_lon, chnl, out_vars, fil, dil_rate, std, swtch, alpha_val, reg_val, num_heads, key_dim):
 
     inp = layers.Input(shape=(inp_lat, inp_lon, chnl))
     y_st = layers.Input(shape=(out_lat, out_lon, 2))
