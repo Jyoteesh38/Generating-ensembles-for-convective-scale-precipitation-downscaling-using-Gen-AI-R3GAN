@@ -7,6 +7,11 @@ from dask.distributed import get_worker
 import tensorflow as tf
 from tensorflow.keras.layers import Layer
 from keras.utils import custom_object_scope
+import os
+import random
+os.environ["TF_DISABLE_NVTX_RANGES"] = "1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+os.environ["NCCL_DEBUG"] = "WARN"
 
 #------------------------------------------------------------- 
 # Denormalise the predicted and target pr data
