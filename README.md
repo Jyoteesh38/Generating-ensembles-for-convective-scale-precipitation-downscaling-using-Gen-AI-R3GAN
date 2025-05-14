@@ -61,16 +61,16 @@ Ensure that the system has proper NCCL support, GPU visibility settings, and TF_
 
 ## 🔍 Inference
 
-Use the provided notebook [`scripts/inference.ipynb`](scripts/inference.ipynb) to generate **high-resolution precipitation ensemble predictions** using trained R3GAN generator models.
+Run the script [`scripts/Inference_plots.py`](scripts/Inference_plots.py) to generate **high-resolution precipitation ensemble predictions** using trained R3GAN generator models.
 
-### This notebook demonstrates:
+### This script demonstrates:
 
 - 🔄 **Loading trained generator models** from saved `.h5` checkpoints
 - 📥 **Preprocessing and loading ERA5 reanalysis inputs** and static variables from `.zarr` format
 - 🎲 **Injecting random Gaussian noise seeds** to simulate ensemble diversity
 - 🎯 **Generating downscaled precipitation fields** at convective resolution
 - 🖼️ **Saving and visualizing output fields** for selected timesteps and ensemble members
-- 📊 **Calculating basic ensemble statistics** across generated members
+- 📊 **Calculating ensemble statistics** across generated members
 
 > ✅ Designed to support batch-wise inference over large datasets and multiple noise seeds for uncertainty quantification.
 
