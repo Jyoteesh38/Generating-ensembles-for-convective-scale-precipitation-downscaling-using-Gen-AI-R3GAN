@@ -120,3 +120,62 @@ def predict_ensemble(n_steps, mask=None):
     print(f"Min/Max of target_data: {target_data.min().values}, {target_data.max().values}")
     
     return ensemble_predictions, target_data
+
+
+def deterministic_predict(n_steps, mask=None):
+    """
+    Predict using an Unet and GAN models.
+
+    :param n_steps: Number of time steps for prediction.
+    :param mask: Optional mask to apply.
+    """
+    
+    class ReflectPadding2D(Layer):
+        def __init__(self, pad_size, **kwargs):
+            self.pad_size = pad_size
+            super(ReflectPadding2D, self).__init__(**kwargs)
+
+        def call(self, inputs):
+            return tf.pad(inputs, [[0, 0], [self.pad_size, self.pad_size], [self.pad_size, self.pad_size], [0, 0]], mode='REFLECT')
+
+        def get_config(self):
+            config = super(ReflectPadding2D, self).get_config()
+            config.update({"pad_size": self.pad_size})
+            return config
+    
+    # Load both models
+    Unet_path = 'Unet_pr_100.h5'
+    GAN_path = "Gen_R3GAN_pr_129.h5"
+    
+    Unet_model = tf.keras.models.load_model(Unet_path, custom_objects={'ReflectPadding2D': ReflectPadding2D}, compile=False)
+    GAN_model = tf.keras.models.load_model(GAN_path, custom_objects={'ReflectPadding2D': ReflectPadding2D}, compile=False)
+    
+    t_start = 0
+    t_end = t_start + n_steps
+    
+    Unet_pred = Unet_model.predict([e5[t_start:t_end, ...].compute().values, 
+                                x_static[t_start:t_end, ...].compute().values])
+    Unet_pred_da = xr.DataArray(Unet_pred, coords=b2c_pr[t_start:t_end,...,0:1].coords, dims=b2c_pr[t_start:t_end,...,0:1].dims)
+    Unet_pr = denorm(Unet_pred_da[..., 0])
+    
+    noise = tf.random.normal(shape=[n_steps, 112, 112, 64], stddev=1.15, seed=1, dtype='float32')
+    GAN_pred = GAN_model.predict([e5[t_start:t_end, ...].compute().values, 
+                                x_static[t_start:t_end, ...].compute().values, 
+                                noise])
+    GAN_pred_da = xr.DataArray(GAN_pred, coords=b2c_pr[t_start:t_end,...,0:1].coords, dims=b2c_pr[t_start:t_end,...,0:1].dims)
+    GAN_pr = denorm(GAN_pred_da[..., 0])
+    
+    # True target data
+    target_data = denorm(b2c_pr[t_start:t_end, ..., 0])
+    
+    # Check shapes
+    print(f"Shape of Unet_prediction: {Unet_pr.shape}")
+    print(f"Shape of GAN_prediction: {GAN_pr.shape}")
+    print(f"Shape of target_data: {target_data.shape}")
+
+    # Check value ranges
+    print(f"Min/Max of Unet_prediction: {Unet_pr.min().values}, {Unet_pr.max().values}")
+    print(f"Min/Max of GAN_prediction: {GAN_pr.min().values}, {GAN_pr.max().values}")
+    print(f"Min/Max of target_data: {target_data.min().values}, {target_data.max().values}")
+    
+    return Unet_pr, GAN_pr, target_data   
