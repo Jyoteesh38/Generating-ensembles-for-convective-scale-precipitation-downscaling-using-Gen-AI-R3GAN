@@ -15,7 +15,7 @@ from metrics import fft_mean, calculate_normalized_rank_histogram_xs, plot_norma
 #------------------------------------------------------------- 
 # load input and target data
 #-------------------------------------------------------------
-era5 = xr.open_zarr('ERA5_ML_data_2k25_nested_directory.zarr')
+era5 = xr.open_zarr('ERA5_ML_data.zarr')
 # Load the test period ERA5 data over tasmania domain
 e5 = era5['ERA5'].sel(latitude=slice(-36.75, -46), longitude=slice(142, 151.25)).sel(time=slice('2021-01-01T00:00:00.000000000', 
                               '2022-12-31T23:00:00.000000000'))
