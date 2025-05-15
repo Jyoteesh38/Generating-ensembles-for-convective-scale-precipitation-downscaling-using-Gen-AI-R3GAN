@@ -9,7 +9,7 @@ This repository implements **R3GAN**, a distributed generative adversarial netwo
 
 ## 📌 Project Highlights
 - 📈 **Trained on massive datasets**: Over **359,000 training samples** (1980–2020) and **17,520 test samples** (2021–2022) used to ensure robust learning and generalization.
-- 🎯 High-resolution precipitation ensemble generation using coarse ERA5 reanalysis inputs
+- 🎯 High-resolution precipitation (4.4 km) ensemble generation using coarse ERA5 reanalysis inputs
 - 🌍 Spatial conditioning with static variables (e.g., orography, land-sea mask)
 - 🧠 Residual U-Net generator with multi-head attention
 - 🧪 Relativistic GAN loss + zero-centered gradient penalties for stable training
@@ -57,7 +57,7 @@ To train using **80 GPUs**, launch with:
 ```bash
 horovodrun -np 80 -H localhost:80 python R3GAN/train_r3gan.py
 ```
-Ensure that the system has proper NCCL support, GPU visibility settings, and TF_DISABLE_NVTX_RANGES / TF_CPP_MIN_LOG_LEVEL environment variables configured (as handled in utils.py).
+Ensure that the system has proper NCCL support, GPU settings, and TF_DISABLE_NVTX_RANGES / TF_CPP_MIN_LOG_LEVEL environment variables configured (as handled in utils.py).
 
 ## 🔍 Inference
 
@@ -68,7 +68,7 @@ Run the script [`scripts/Inference_plots.py`](scripts/Inference_plots.py) to gen
 - 🔄 **Loading trained generator models** from saved `.h5` checkpoints
 - 📥 **Preprocessing and loading ERA5 reanalysis inputs** and static variables from `.zarr` format
 - 🎲 **Injecting random Gaussian noise seeds** to simulate ensemble diversity
-- 🎯 **Generating downscaled precipitation fields** at convective resolution
+- 🎯 **Generating downscaled precipitation fields** at convective resolution (4.4 km)
 - 🖼️ **Saving and visualizing output fields** for selected timesteps and ensemble members
 - 📊 **Calculating ensemble statistics** across generated members
 
