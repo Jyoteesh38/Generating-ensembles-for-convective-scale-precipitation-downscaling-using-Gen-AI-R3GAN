@@ -59,6 +59,22 @@ horovodrun -np 80 -H localhost:80 python R3GAN/train_r3gan.py
 ```
 Ensure that the system has proper NCCL support, GPU settings, and TF_DISABLE_NVTX_RANGES / TF_CPP_MIN_LOG_LEVEL environment variables configured (as handled in utils.py).
 
+train_r3gan.py is the main training script for the R3GAN model. This script trains a Relativistic GAN model (R3GAN) for convective-scale precipitation downscaling using Horovod-based multi-GPU distributed training. It handles data loading, preprocessing, model building, and training loops for the generator and discriminator, with validation and checkpointing.
+
+models.py defines the architecture of the generator and discriminator networks for the R3GAN model using U-Net blocks, attention layers, and convolutional modules. It includes reusable components such as residual blocks, padding layers, and attention modules tailored for image-like spatiotemporal inputs.
+
+losses.py implements custom loss functions for the GAN model, including relativistic adversarial loss and zero-centered gradient penalties for stability. Includes both discriminator and generator loss functions designed to mitigate mode collapse and improve convergence.
+
+utils.py provides utility functions for Horovod setup, GPU configuration, data shuffling, splitting, and loading in a parallelized training environment. Helps ensure consistent data handling and efficient batching across distributed training workers.
+
+Inference_metrics.py implements evaluation metrics for ensemble precipitation prediction, including normalized rank histograms, ROC curves, and frequency-based power spectral density (PSD) analysis.
+
+model_predictions.py generates ensemble and deterministic predictions using trained R3GAN and UNET models on ERA5 inputs and BARRA-C2 static fields. Includes support for multi-model, multi-seed ensemble generation using Dask for parallel computation, and denormalization of outputs for post-processing.
+
+loss_curve.py parses training history and visualizes generator and discriminator losses over epochs. Helps monitor model convergence and identify optimal training checkpoints.
+
+Inference_plots.py performs a comprehensive evaluation of model outputs, including statistical distributions, spatial plots, PSD, ROC, CRPS, and Brier scores. Generates comparison plots across ERA5, BARRA-C2, UNET, and R3GAN predictions for ensemble and deterministic forecasts.
+
 ## 🔍 Inference
 
 Run the script [`scripts/Inference_plots.py`](scripts/Inference_plots.py) to generate **high-resolution precipitation ensemble predictions** using trained R3GAN generator models.
