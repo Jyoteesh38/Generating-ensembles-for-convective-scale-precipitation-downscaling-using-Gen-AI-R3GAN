@@ -11,7 +11,7 @@ cartopy.config['data_dir'] = 'apps/cartopy-data'
 import cartopy.feature as cfeature
 
 from model_predictions import predict_ensemble, deterministic_predict
-from metrics import fft_mean, calculate_normalized_rank_histogram_xs, plot_normalized_rank_histogram_xs, calculate_roc_for_ensemble, plot_roc_curves 
+from inference_metrics import fft_mean, calculate_normalized_rank_histogram_xs, plot_normalized_rank_histogram_xs, calculate_roc_for_ensemble, plot_roc_curves 
 #------------------------------------------------------------- 
 # load input and target data
 #-------------------------------------------------------------
