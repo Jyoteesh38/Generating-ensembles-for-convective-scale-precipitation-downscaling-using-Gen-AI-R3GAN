@@ -7,7 +7,7 @@ This repository implements **R3GAN**, a distributed generative adversarial netwo
 ---
 
 ## 📌 Project Highlights
-- 📈 **Trained on massive datasets**: Over **359,000 training images** (1980–2020) and **17,520 test images** (2021–2022) used to ensure robust learning and generalization.
+- 📈 **Trained on massive datasets**: Over **359,000 training samples (each training sample has 71 images)** (1980–2020) and **17,520 test samples** (2021–2022) used to ensure robust learning and generalization.
 - 🎯 High-resolution precipitation (4.4 km) ensemble generation using coarse ERA5 reanalysis inputs
 - 🌍 Spatial conditioning with static variables (e.g., orography, land-sea mask)
 - 🧠 Residual U-Net generator with multi-head attention
