@@ -12,7 +12,7 @@ This repository implements **R3GAN**, a distributed generative adversarial netwo
 - 🌍 Spatial conditioning with static variables (e.g., orography, land-sea mask)
 - 🧠 Residual U-Net generator with multi-head attention
 - 🧪 Relativistic GAN loss + zero-centered gradient penalties for stable training
-- 🚀 Distributed training with Horovod + TensorFlow on multi-GPU systems (80 GPUs)
+- 🚀 Distributed training with Horovod + TensorFlow on multi-GPU systems (80 NVIDIA V100 GPUs)
 - 🧬 **R3GAN ensemble framework**: Combines **noise seeds**, **variance**, and **model epoch sampling** to enhance diversity in high-resolution precipitation generation.
 - 🔁 **Multi-source ensemble generation**: Improves **calibration**, **diversity**, and **uncertainty quantification** for convective precipitation events.
 
