@@ -39,8 +39,8 @@ This repository implements **R3GAN**, a distributed generative adversarial netwo
 
 This project uses high-volume climate and observation datasets in `.zarr` format:
 
-- **`ERA5_ML_data.zarr`** — ERA5 climate reanalysis variables from 1980–2022 (coarse resolution)
-- **`B2C_Pr_data_2k25.zarr`** — BARRA-C2 target high-resolution precipitation data
+- **`ERA5_ML_data.zarr`** — ERA5 atmospheric reanalysis variables from 1980–2022 (coarse resolution)
+- **`B2C_Pr_data_2k25.zarr`** — BARRA-C2 target high-resolution precipitation (4.4 km) data
 - **`B_C2_static.zarr`** — Static predictors including land-sea mask and orography
 
 > 📁 These datasets are not included in this repository due to their large size.
