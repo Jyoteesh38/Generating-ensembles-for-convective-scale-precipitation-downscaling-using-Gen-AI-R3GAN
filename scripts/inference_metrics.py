@@ -154,6 +154,5 @@ def plot_roc_curves(thresholds, ensemble_predictions, target_data):
 
     # Add main title
     fig.suptitle("Ensemble-3", fontsize=font_size+2)
-
     plt.tight_layout()
     plt.savefig('ROC_R3GAN8_ens_3.pdf')
