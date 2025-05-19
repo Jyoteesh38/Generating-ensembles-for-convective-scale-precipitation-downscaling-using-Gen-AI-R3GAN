@@ -1,4 +1,4 @@
-# R3GAN: Generating Ensembles for Convective-Scale Precipitation Downscaling Using Generative Machine Learning
+# R3GAN: Generating Ensembles for Convective-Scale Precipitation Downscaling Using Generative AI
 
 ![Training framework](docs/GAN_training.png)
 
