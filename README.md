@@ -2,7 +2,7 @@
 
 ![Training framework](docs/GAN_training.png)
 
-This repository implements **R3GAN**, a distributed generative adversarial network (GAN) for the prediction of convective-scale precipitation (4.4 km horizontal resolution) using ERA5 atmospheric variables as input and Australian regional reanalysis (BARRA-C2) precipitation as target.
+This repository implements **R3GAN**, a distributed generative adversarial network (GAN) for the prediction of convective-scale precipitation (4.4 km horizontal resolution) using ERA5 atmospheric variables as input and Australian regional reanalysis (BARRA-C2) precipitation as target. For more information, please refer to the preprint: https://doi.org/10.22541/essoar.174802957.72376154/v1
 
 ---
 
